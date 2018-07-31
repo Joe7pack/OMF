@@ -38,7 +38,7 @@ class CustomList(private val mMyApplication: MyApplication, context: Activity,
         }
 
         if ((position == 0) or (position == mOtherContactStartingPosition)) {
-            txtContactType.visibility = View.VISIBLE
+            txtContactType.visibility = View.INVISIBLE
         } else {
             txtContactType.visibility = View.INVISIBLE
             val parms = txtContactType.layoutParams as TableLayout.LayoutParams

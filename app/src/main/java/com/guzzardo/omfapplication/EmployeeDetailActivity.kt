@@ -107,15 +107,26 @@ class EmployeeDetailActivity : AppCompatActivity() {
 
 
         if (employeeData?.release?.na != null && employeeData?.release?.na!!.isNotEmpty()) {
-            phone.text = employeeData.release!!.na
-            phoneType.text = "Home"
+
+            try {
+                val fmt = SimpleDateFormat("yyyy-MM-dd")
+                val formattedDate = fmt.parse(employeeData?.release?.na)
+                    val fmtOut = SimpleDateFormat("MMMM d, yyyy")
+                    val formattedBirthday = fmtOut.format(formattedDate)
+                    phone.text = formattedBirthday
+                } catch (e: Exception) {
+                    phone.text = employeeData?.release?.na
+                }
+
+            //phone.text = employeeData.release!!.na
+            phoneType.text = "North America"
             phone.visibility = View.VISIBLE
             phoneType.visibility = View.VISIBLE
-            phoneLiteral.text = "PHONE"
+            phoneLiteral.text = "Release Date"
             phoneLiteral.visibility = View.VISIBLE
-            phoneTopMargin += verticalIncrement
-            phoneTypeTopMargin += verticalIncrement
-            phoneLiteralTopMargin += verticalIncrement
+            //phoneTopMargin += verticalIncrement
+            //phoneTypeTopMargin += verticalIncrement
+            //phoneLiteralTopMargin += verticalIncrement
         }
 
 

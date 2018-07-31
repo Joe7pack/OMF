@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //load the small icon bitmaps...
         private fun loadListView(employeeList: List<Repository.Amiibo>) {
             val listNames = arrayOfNulls<String>(employeeList.size)
-            val listCompany = arrayOfNulls<String>(employeeList.size)
+            val listSeries = arrayOfNulls<String>(employeeList.size)
             val listImages = arrayOfNulls<Int>(employeeList.size)
             val listFavorites = arrayOfNulls<String>(employeeList.size)
             val customList = ArrayList<View>()
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 for (x in employeeList.indices) {
                     val employee = employeeList[x]
                     listNames[x] = employee.name
-                    //listCompany[x] = employee.companyName
+                    listSeries[x] = employee.amiiboSeries
 
                     listImages[x] = imageId
                     //listFavorites[x] = employee.isFavorite
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             myApplication!!.setCustomList(customList)
             myApplication!!.setSmallIconBitmapMap(bitmapMap)
-            val adapter = CustomList(myApplication!!, this@MainActivity, listNames, listCompany, listImages, listFavorites)
+            val adapter = CustomList(myApplication!!, this@MainActivity, listNames, listSeries, listImages, listFavorites)
             myApplication!!.setListViewAdapter(adapter)
             listViewLoaded = true
             listDisplayLoaded = true
@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun loadListView2(employeeList: List<Repository.Amiibo>?) {
         val listNames = arrayOfNulls<String>(employeeList!!.size)
-        val listCompany = arrayOfNulls<String>(employeeList.size)
+        val listSeries = arrayOfNulls<String>(employeeList.size)
         val listImages = arrayOfNulls<Int>(employeeList.size)
         val listFavorites = arrayOfNulls<String>(employeeList.size)
         val customList = ArrayList<View>()
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         for (x in employeeList!!.indices) {
             val employee = employeeList[x]
             listNames[x] = employee.name
-            listCompany[x] = "none" //employee.companyName
+            listSeries[x] = employee.amiiboSeries
 
             listImages[x] = imageId
             listFavorites[x] = "none" //employee.isFavorite
@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             customList.add(rowView)
         }
         myApplication!!.setCustomList(customList)
-        val adapter = CustomList(myApplication!!, this@MainActivity, listNames, listCompany, listImages, listFavorites)
+        val adapter = CustomList(myApplication!!, this@MainActivity, listNames, listSeries, listImages, listFavorites)
         myApplication!!.setListViewAdapter(adapter)
         mListView!!.adapter = adapter
     }
